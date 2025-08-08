@@ -8,4 +8,5 @@ the db will be accessible via a CLI or SDKs.
 - C++
 - CMake
 - gRPC
+- Protobuf
 - Kubernetes
