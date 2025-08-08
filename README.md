@@ -10,3 +10,4 @@ the db will be accessible via a CLI or SDKs.
 - gRPC
 - Protobuf
 - Kubernetes
+- Docker
