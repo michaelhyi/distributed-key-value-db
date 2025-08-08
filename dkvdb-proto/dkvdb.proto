@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package dkvdb;
+
+import "google/protobuf/empty.proto";
+
+service Dkvdb {
+    rpc Get (GetRequest) returns (GetResponse) {}
+    rpc Set (SetRequest) returns (google.protobuf.Empty) {}
+    rpc Del (DelRequest) returns (google.protobuf.Empty) {}
+}
+
+message GetRequest {
+    string key = 1;
+}
+
+message GetResponse {
+    string value = 1;
+}
+
+message SetRequest {
+    string key = 1;
+    string value = 2;
+}
+
+message DelRequest {
+    string key = 1;
+}
