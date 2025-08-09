@@ -1,4 +1,7 @@
 #include "dkvdb.h"
+
+#include <spdlog/spdlog.h>
+
 #include "util.h"
 
 using grpc::StatusCode;
@@ -7,6 +10,8 @@ Status DkvdbImpl::Get(ServerContext *context, const GetRequest *request, GetResp
     if (!request || !context || !response) {
         return Status(StatusCode::INTERNAL, "There was an error processing your request");
     }
+
+    spdlog::info("Processing GetRequest with key={}", request->key());
 
     if (!Util::valid_string(request->key())) {
         return Status(StatusCode::INVALID_ARGUMENT, "Key must be non-empty");
@@ -27,6 +32,8 @@ Status DkvdbImpl::Set(ServerContext *context, const SetRequest *request, Empty *
         return Status(StatusCode::INTERNAL, "There was an error processing your request");
     }
 
+    spdlog::info("Processing SetRequest with key={}, value={}", request->key(), request->value());
+
     if (!Util::valid_string(request->key()) || !Util::valid_string(request->value())) {
         return Status(StatusCode::INVALID_ARGUMENT, "Key and value must be non-empty");
     }
@@ -40,6 +47,8 @@ Status DkvdbImpl::Del(ServerContext *context, const DelRequest *request, Empty *
     if (!request || !context || !response) {
         return Status(StatusCode::INTERNAL, "There was an error processing your request");
     }
+
+    spdlog::info("Processing SetRequest with key={}", request->key());
 
     if (!Util::valid_string(request->key())) {
         return Status(StatusCode::INVALID_ARGUMENT, "Key must be non-empty");

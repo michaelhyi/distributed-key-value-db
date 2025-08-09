@@ -22,6 +22,8 @@ else()
     set(_GRPC_CPP_PLUGIN_EXECUTABLE $<TARGET_FILE:gRPC::grpc_cpp_plugin>)
 endif()
 
+find_package(spdlog REQUIRED)
+
 get_filename_component(dkvdb_proto "dkvdb.proto" ABSOLUTE)
 get_filename_component(dkvdb_proto_path "${dkvdb_proto}" PATH)
 
@@ -70,4 +72,5 @@ target_link_libraries(
     ${_REFLECTION}
     ${_GRPC_GRPCPP}
     ${_PROTOBUF_LIBPROTOBUF}
+    spdlog::spdlog $<$<BOOL:${MINGW}>:ws2_32>
 )

@@ -2,9 +2,9 @@
 
 #include <string>
 #include <memory>
-#include <iostream>
 #include <grpcpp/server.h>
 #include <grpcpp/server_builder.h>
+#include <spdlog/spdlog.h>
 
 #include "dkvdb.h"
 
@@ -19,6 +19,7 @@ void RunServer(void) {
     builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
     builder.RegisterService(&service);
     std::unique_ptr<Server> server(builder.BuildAndStart());
-    std::cout << "Server listening on " << server_address << std::endl;
+
+    spdlog::info("Server listening on {}", server_address);
     server->Wait();
 }
