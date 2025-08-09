@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: dkvdb
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: dkvdb
