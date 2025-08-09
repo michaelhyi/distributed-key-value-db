@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: dkvdb
+spec:
+  selector:
+    matchLabels:
+      app: dkvdb
+  serviceName: dkvdb
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: dkvdb
+    spec:
+      containers:
+      - name: dkvdb
+        imagePullPolicy: Never
+        image: michaelyi/dkvdb:latest
+        ports:
+        - containerPort: 50051
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dkvdb
+spec:
+  clusterIP: None
+  selector:
+    app: dkvdb
+  ports:
+  - port: 50051
+    targetPort: 50051
