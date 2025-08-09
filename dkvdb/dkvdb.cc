@@ -48,7 +48,7 @@ Status DkvdbImpl::Del(ServerContext *context, const DelRequest *request, Empty *
         return Status(StatusCode::INTERNAL, "There was an error processing your request");
     }
 
-    spdlog::info("Processing SetRequest with key={}", request->key());
+    spdlog::info("Processing DelRequest with key={}", request->key());
 
     if (!Util::valid_string(request->key())) {
         return Status(StatusCode::INVALID_ARGUMENT, "Key must be non-empty");
