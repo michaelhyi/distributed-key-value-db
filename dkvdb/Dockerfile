@@ -30,7 +30,8 @@ RUN git clone --recurse-submodules -b v1.74.0 --depth 1 --shallow-submodules htt
 
 COPY . .
 
-RUN mkdir -p build \
+RUN rm -rf build \
+    && mkdir -p build \
     && cd build \
     && cmake .. \
     && make
