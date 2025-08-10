@@ -24,7 +24,7 @@ endif()
 
 find_package(spdlog REQUIRED)
 
-get_filename_component(dkvdb_router_proto "dkvdb_router.proto" ABSOLUTE)
+get_filename_component(dkvdb_router_proto "../dkvdb-protos/dkvdb_router.proto" ABSOLUTE)
 get_filename_component(dkvdb_router_proto_path "${dkvdb_router_proto}" PATH)
 
 set(dkvdb_router_proto_srcs "${CMAKE_CURRENT_BINARY_DIR}/dkvdb_router.pb.cc")

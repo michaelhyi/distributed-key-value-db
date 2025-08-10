@@ -24,7 +24,7 @@ endif()
 
 find_package(spdlog REQUIRED)
 
-get_filename_component(dkvdb_proto "dkvdb.proto" ABSOLUTE)
+get_filename_component(dkvdb_proto "../dkvdb-protos/dkvdb.proto" ABSOLUTE)
 get_filename_component(dkvdb_proto_path "${dkvdb_proto}" PATH)
 
 set(dkvdb_proto_srcs "${CMAKE_CURRENT_BINARY_DIR}/dkvdb.pb.cc")
