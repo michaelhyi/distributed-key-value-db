@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package dkvdb_router;
+
+import "google/protobuf/empty.proto";
+
+service DkvdbRouter {
+    rpc RegisterNode (RegisterNodeRequest) returns (google.protobuf.Empty) {};
+}
+
+message RegisterNodeRequest {
+    string server_address = 1;
+}

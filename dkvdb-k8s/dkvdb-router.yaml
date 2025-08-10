@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dkvdb-router
+spec:
+  selector:
+    matchLabels:
+      app: dkvdb-router
+  template:
+    metadata:
+      labels:
+        app: dkvdb-router
+    spec:
+      containers:
+      - name: dkvdb-router
+        image: michaelyi/dkvdb-router:latest
+        imagePullPolicy: Never
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 50051
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dkvdb-router
+spec:
+  selector:
+    app: dkvdb-router 
+  ports:
+  - port: 50051
+    targetPort: 50051
+
