@@ -1,28 +1,7 @@
 cmake_minimum_required(VERSION 3.19)
 project(dkvdb-router)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
-
-set(protobuf_MODULE_COMPATIBLE TRUE)
-find_package(Protobuf CONFIG REQUIRED)
-set(_PROTOBUF_LIBPROTOBUF protobuf::libprotobuf)
-set(_REFLECTION gRPC::grpc++_reflection)
-if(CMAKE_CROSSCOMPILING)
-    find_program(_PROTOBUF_PROTOC protoc)
-else()
-    set(_PROTOBUF_PROTOC $<TARGET_FILE:protobuf::protoc>)
-endif()
-
-find_package(gRPC CONFIG REQUIRED)
-set(_GRPC_GRPCPP gRPC::grpc++)
-if(CMAKE_CROSSCOMPILING)
-    find_program(_GRPC_CPP_PLUGIN_EXECUTABLE grpc_cpp_plugin)
-else()
-    set(_GRPC_CPP_PLUGIN_EXECUTABLE $<TARGET_FILE:gRPC::grpc_cpp_plugin>)
-endif()
-
-find_package(spdlog REQUIRED)
+include(../common.cmake)
 
 get_filename_component(dkvdb_router_proto "../dkvdb-protos/dkvdb_router.proto" ABSOLUTE)
 get_filename_component(dkvdb_router_proto_path "${dkvdb_router_proto}" PATH)
@@ -44,7 +23,8 @@ add_custom_command(
 
 include_directories("${CMAKE_CURRENT_BINARY_DIR}")
 
-add_library(dkvdb_router_grpc_proto
+add_library(
+    dkvdb_router_grpc_proto
     ${dkvdb_router_proto_srcs}
     ${dkvdb_router_proto_hdrs}
     ${dkvdb_router_grpc_srcs}
@@ -63,12 +43,11 @@ add_executable(
     main.cc
     server.cc
     server.h
-    util.cc
-    util.h
 )
 target_link_libraries(
     dkvdb_router
     dkvdb_router_grpc_proto
+    dkvdb_util
     ${_REFLECTION}
     ${_GRPC_GRPCPP}
     ${_PROTOBUF_LIBPROTOBUF}

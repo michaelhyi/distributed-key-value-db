@@ -28,8 +28,10 @@ RUN git clone --recurse-submodules -b v1.74.0 --depth 1 --shallow-submodules htt
     && make -j 4 \
     && make install
 
-COPY dkvdb-protos/dkvdb.proto /usr/src/app/dkvdb-protos/dkvdb.proto
+COPY common.cmake /usr/src/app/common.cmake
 COPY dkvdb/ /usr/src/app/dkvdb/
+COPY dkvdb-protos/dkvdb.proto /usr/src/app/dkvdb-protos/dkvdb.proto
+COPY dkvdb-util/ /usr/src/app/dkvdb-util/
 
 RUN cd dkvdb/ \
     && rm -rf build \
