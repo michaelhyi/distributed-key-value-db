@@ -8,25 +8,13 @@
 
 #include "dkvdb.grpc.pb.h"
 
-using dkvdb::DelRequest;
-using dkvdb::Dkvdb;
-using dkvdb::GetRequest;
-using dkvdb::GetResponse;
-using dkvdb::SetRequest;
-using google::protobuf::Empty;
-using grpc::ServerContext;
-using grpc::Status;
-
-class DkvdbImpl final : public Dkvdb::Service {
-  private:
+class DkvdbImpl final : public dkvdb::Dkvdb::Service {
+private:
     std::unordered_map<std::string, std::string> db;
     std::shared_mutex db_mutex;
 
-  public:
-    Status Get(ServerContext *context, const GetRequest *request,
-               GetResponse *response) override;
-    Status Set(ServerContext *context, const SetRequest *request,
-               Empty *response) override;
-    Status Del(ServerContext *context, const DelRequest *request,
-               Empty *response) override;
+public:
+    grpc::Status Get(grpc::ServerContext *context, const dkvdb::GetRequest *request, dkvdb::GetResponse *response) override;
+    grpc::Status Set(grpc::ServerContext *context, const dkvdb::SetRequest *request, google::protobuf::Empty *response) override;
+    grpc::Status Del(grpc::ServerContext *context, const dkvdb::DelRequest *request, google::protobuf::Empty *response) override;
 };

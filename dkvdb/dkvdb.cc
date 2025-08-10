@@ -4,6 +4,13 @@
 
 #include "util.h"
 
+using dkvdb::DelRequest;
+using dkvdb::GetRequest;
+using dkvdb::GetResponse;
+using dkvdb::SetRequest;
+using google::protobuf::Empty;
+using grpc::ServerContext;
+using grpc::Status;
 using grpc::StatusCode;
 
 Status DkvdbImpl::Get(ServerContext *context, const GetRequest *request, GetResponse *response) {
