@@ -21,6 +21,9 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 50051
+        env:
+          - name: SPDLOG_LEVEL
+            value: debug,mylogger=trace
 ---
 apiVersion: v1
 kind: Service
