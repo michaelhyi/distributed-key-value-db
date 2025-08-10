@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
       - name: dkvdb
-        imagePullPolicy: Never
         image: michaelyi/dkvdb:latest
+        imagePullPolicy: Never
         ports:
         - containerPort: 50051
 ---
