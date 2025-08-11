@@ -34,3 +34,9 @@ target_include_directories(
     common
     PUBLIC "${CMAKE_CURRENT_LIST_DIR}/common"
 )
+target_link_libraries(
+    common
+    ${_REFLECTION}
+    ${_GRPC_GRPCPP}
+    ${_PROTOBUF_LIBPROTOBUF}
+)
