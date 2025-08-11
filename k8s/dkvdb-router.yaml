@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: dkvdb-router
 spec:
+  replicas: 3
   selector:
     matchLabels:
       app: dkvdb-router
@@ -30,9 +31,9 @@ kind: Service
 metadata:
   name: dkvdb-router
 spec:
+  type: LoadBalancer
   selector:
     app: dkvdb-router 
   ports:
   - port: 50051
     targetPort: 50051
-
