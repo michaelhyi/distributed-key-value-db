@@ -2,7 +2,7 @@
 
 #include <spdlog/spdlog.h>
 
-#include "util.h"
+#include "string_util.h"
 
 using dkvdb_router::RegisterNodeRequest;
 using google::protobuf::Empty;
@@ -17,7 +17,7 @@ Status DkvdbRouterImpl::RegisterNode(ServerContext *context, const RegisterNodeR
 
     spdlog::debug("Registering node with server_addres={}", request->server_address());
 
-    if (!Util::valid_string(request->server_address())) {
+    if (!StringUtil::valid_string(request->server_address())) {
         return Status(StatusCode::INVALID_ARGUMENT, "Server address must be non-empty");
     }
 

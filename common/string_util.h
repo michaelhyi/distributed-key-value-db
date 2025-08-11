@@ -2,10 +2,10 @@
 
 #include <string>
 
-class Util {
+class StringUtil {
 public:
     static bool valid_string(const std::string &s);
 
 private:
-    static bool string_is_whitespace(const std::string &s);
+    static bool blank_string(const std::string &s);
 };

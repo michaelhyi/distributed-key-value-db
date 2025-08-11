@@ -2,7 +2,7 @@
 
 #include <spdlog/spdlog.h>
 
-#include "util.h"
+#include "string_util.h"
 
 using dkvdb::DelRequest;
 using dkvdb::GetRequest;
@@ -20,7 +20,7 @@ Status DkvdbImpl::Get(ServerContext *context, const GetRequest *request, GetResp
 
     spdlog::info("Processing GetRequest with key={}", request->key());
 
-    if (!Util::valid_string(request->key())) {
+    if (!StringUtil::valid_string(request->key())) {
         return Status(StatusCode::INVALID_ARGUMENT, "Key must be non-empty");
     }
 
@@ -41,7 +41,7 @@ Status DkvdbImpl::Set(ServerContext *context, const SetRequest *request, Empty *
 
     spdlog::info("Processing SetRequest with key={}, value={}", request->key(), request->value());
 
-    if (!Util::valid_string(request->key()) || !Util::valid_string(request->value())) {
+    if (!StringUtil::valid_string(request->key()) || !StringUtil::valid_string(request->value())) {
         return Status(StatusCode::INVALID_ARGUMENT, "Key and value must be non-empty");
     }
 
@@ -57,7 +57,7 @@ Status DkvdbImpl::Del(ServerContext *context, const DelRequest *request, Empty *
 
     spdlog::info("Processing DelRequest with key={}", request->key());
 
-    if (!Util::valid_string(request->key())) {
+    if (!StringUtil::valid_string(request->key())) {
         return Status(StatusCode::INVALID_ARGUMENT, "Key must be non-empty");
     }
 
