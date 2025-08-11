@@ -46,8 +46,8 @@ add_executable(
 target_link_libraries(
     dkvdb_router
     dkvdb_router_grpc_proto
-    dkvdb_server
-    dkvdb_util
+    common
+    common
     ${_REFLECTION}
     ${_GRPC_GRPCPP}
     ${_PROTOBUF_LIBPROTOBUF}

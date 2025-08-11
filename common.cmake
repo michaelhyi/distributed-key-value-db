@@ -24,27 +24,13 @@ endif()
 find_package(spdlog REQUIRED)
 
 add_library(
-    dkvdb_server
-    "${CMAKE_CURRENT_LIST_DIR}/dkvdb-server/server.cc"
-    "${CMAKE_CURRENT_LIST_DIR}/dkvdb-server/server.h"
+    common 
+    "${CMAKE_CURRENT_LIST_DIR}/common/server.cc"
+    "${CMAKE_CURRENT_LIST_DIR}/common/server.h"
+    "${CMAKE_CURRENT_LIST_DIR}/common/util.cc"
+    "${CMAKE_CURRENT_LIST_DIR}/common/util.h"
 )
 target_include_directories(
-    dkvdb_server
-    PUBLIC "${CMAKE_CURRENT_LIST_DIR}/dkvdb-server"
-)
-target_link_libraries(
-    dkvdb_server
-    ${_GRPC_GRPCPP}
-    ${_REFLECTION}
-    ${_PROTOBUF_LIBPROTOBUF}
-)
-
-add_library(
-    dkvdb_util
-    "${CMAKE_CURRENT_LIST_DIR}/dkvdb-util/util.cc"
-    "${CMAKE_CURRENT_LIST_DIR}/dkvdb-util/util.h"
-)
-target_include_directories(
-    dkvdb_util
-    PUBLIC "${CMAKE_CURRENT_LIST_DIR}/dkvdb-util"
+    common
+    PUBLIC "${CMAKE_CURRENT_LIST_DIR}/common"
 )
