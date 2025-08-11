@@ -29,7 +29,7 @@ RUN git clone --recurse-submodules -b v1.74.0 --depth 1 --shallow-submodules htt
     && make install
 
 COPY common.cmake /usr/src/app/common.cmake
-COPY dkvdb-protos/dkvdb_router.proto /usr/src/app/dkvdb-protos/dkvdb_router.proto
+COPY protobufs/dkvdb_router.proto /usr/src/app/protobufs/dkvdb_router.proto
 COPY dkvdb-router/ /usr/src/app/dkvdb-router/
 COPY dkvdb-server/ /usr/src/app/dkvdb-server/
 COPY dkvdb-util/ /usr/src/app/dkvdb-util/
