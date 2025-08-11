@@ -30,7 +30,8 @@ add_library(
     ${dkvdb_grpc_srcs}
     ${dkvdb_grpc_hdrs}
 )
-target_link_libraries(dkvdb_grpc_proto
+target_link_libraries(
+    dkvdb_grpc_proto
     ${_GRPC_GRPCPP}
     ${_REFLECTION}
     ${_PROTOBUF_LIBPROTOBUF}
@@ -41,12 +42,11 @@ add_executable(
     dkvdb.cc
     dkvdb.h
     main.cc
-    server.cc
-    server.h
 )
 target_link_libraries(
     dkvdb
     dkvdb_grpc_proto
+    dkvdb_server
     dkvdb_util
     ${_REFLECTION}
     ${_GRPC_GRPCPP}
