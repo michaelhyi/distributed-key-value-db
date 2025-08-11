@@ -1,16 +1,16 @@
-#include "dkvdb_router.h"
+#include "router.h"
 
 #include <spdlog/spdlog.h>
 
 #include "string_util.h"
 
-using dkvdb_router::RegisterNodeRequest;
+using router::RegisterNodeRequest;
 using google::protobuf::Empty;
 using grpc::ServerContext;
 using grpc::Status;
 using grpc::StatusCode;
 
-Status DkvdbRouterImpl::RegisterNode(ServerContext *context, const RegisterNodeRequest *request, Empty *response) {
+Status RouterImpl::RegisterNode(ServerContext *context, const RegisterNodeRequest *request, Empty *response) {
     if (!context || !request || !response) {
         return Status(StatusCode::INTERNAL, "There was an error processing your request");
     }

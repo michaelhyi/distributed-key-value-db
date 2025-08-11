@@ -29,7 +29,7 @@ eval $(minikube docker-env)
 
 Build the base image and the images of each service.
 ```bash
-docker build -f Dockerfile.base . -t michaelyi/dkvdb-base:latest
-docker build -f dkvdb/Dockerfile . -t michaelyi/dkvdb:latest
-docker build -f dkvdb-router/Dockerfile . -t michaelyi/dkvdb-router:latest
+docker build -f Dockerfile.base . -t michaelyi/base:latest
+docker build -f db/Dockerfile . -t michaelyi/db:latest
+docker build -f router/Dockerfile . -t michaelyi/router:latest
 ```

@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package dkvdb_router;
+package router;
 
 import "google/protobuf/empty.proto";
 
-service DkvdbRouter {
+service Router {
     rpc RegisterNode (RegisterNodeRequest) returns (google.protobuf.Empty) {};
 }
 

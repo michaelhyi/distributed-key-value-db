@@ -1,19 +1,19 @@
-#include "dkvdb.h"
+#include "db.h"
 
 #include <spdlog/spdlog.h>
 
 #include "string_util.h"
 
-using dkvdb::DelRequest;
-using dkvdb::GetRequest;
-using dkvdb::GetResponse;
-using dkvdb::SetRequest;
+using db::DelRequest;
+using db::GetRequest;
+using db::GetResponse;
+using db::SetRequest;
 using google::protobuf::Empty;
 using grpc::ServerContext;
 using grpc::Status;
 using grpc::StatusCode;
 
-Status DkvdbImpl::Get(ServerContext *context, const GetRequest *request, GetResponse *response) {
+Status DbImpl::Get(ServerContext *context, const GetRequest *request, GetResponse *response) {
     if (!request || !context || !response) {
         return Status(StatusCode::INTERNAL, "There was an error processing your request");
     }
@@ -34,7 +34,7 @@ Status DkvdbImpl::Get(ServerContext *context, const GetRequest *request, GetResp
     return Status::OK;
 }
 
-Status DkvdbImpl::Set(ServerContext *context, const SetRequest *request, Empty *response) {
+Status DbImpl::Set(ServerContext *context, const SetRequest *request, Empty *response) {
     if (!request || !context || !response) {
         return Status(StatusCode::INTERNAL, "There was an error processing your request");
     }
@@ -50,7 +50,7 @@ Status DkvdbImpl::Set(ServerContext *context, const SetRequest *request, Empty *
     return Status::OK;
 }
 
-Status DkvdbImpl::Del(ServerContext *context, const DelRequest *request, Empty *response) {
+Status DbImpl::Del(ServerContext *context, const DelRequest *request, Empty *response) {
     if (!request || !context || !response) {
         return Status(StatusCode::INTERNAL, "There was an error processing your request");
     }

@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package dkvdb;
+package db;
 
 import "google/protobuf/empty.proto";
 
-service Dkvdb {
+service Db {
     rpc Get (GetRequest) returns (GetResponse) {}
     rpc Set (SetRequest) returns (google.protobuf.Empty) {}
     rpc Del (DelRequest) returns (google.protobuf.Empty) {}

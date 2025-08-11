@@ -1,25 +1,22 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: dkvdb-router
+  name: db
 spec:
-  replicas: 3
   selector:
     matchLabels:
-      app: dkvdb-router
+      app: db
+  serviceName: db
+  replicas: 3
   template:
     metadata:
       labels:
-        app: dkvdb-router
+        app: db
     spec:
       containers:
-      - name: dkvdb-router
-        image: michaelyi/dkvdb-router:latest
+      - name: db
+        image: michaelyi/db:latest
         imagePullPolicy: Never
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
         ports:
         - containerPort: 50051
         env:
@@ -29,11 +26,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: dkvdb-router
+  name: db
 spec:
-  type: LoadBalancer
+  clusterIP: None
   selector:
-    app: dkvdb-router 
+    app: db
   ports:
   - port: 50051
     targetPort: 50051
