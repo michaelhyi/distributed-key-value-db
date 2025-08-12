@@ -15,7 +15,7 @@ Status RouterImpl::RegisterNode(ServerContext *context, const RegisterNodeReques
         return Status(StatusCode::INTERNAL, "There was an error processing your request");
     }
 
-    spdlog::debug("Registering node with server_addres={}", request->server_address());
+    spdlog::debug("Registering node {}", request->server_address());
 
     if (!StringUtil::valid_string(request->server_address())) {
         return Status(StatusCode::INVALID_ARGUMENT, "Server address must be non-empty");
