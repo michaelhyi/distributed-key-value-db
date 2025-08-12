@@ -1,4 +1,4 @@
-#include "router_util.h"
+#include "db_util.h"
 
 #include <string>
 #include <stdexcept>
@@ -16,7 +16,7 @@
 const int MAX_RETRIES = 5;
 const int RETRY_DELAY_MS = 2000;
 
-void RouterUtil::register_node() {
+void DbUtil::register_node() {
     std::string server_address = NetworkUtil::get_server_addr();
 
     RouterClient router_client(

@@ -1,6 +1,6 @@
 #pragma once
 
-class RouterUtil {
+class DbUtil {
 public:
     static void register_node();
 };
