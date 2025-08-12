@@ -40,6 +40,7 @@ kubectl port-forward services/router 50051:50051
 ```
 
 ### TODO
+- [ ] Update README with gRPC usage
 - [ ] Sharding vs. Replication (eventual consistency)
 - [ ] Horizontal Scaling Support for Router
 - [ ] SSL Termination
