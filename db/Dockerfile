@@ -1,6 +1,7 @@
 FROM michaelyi/base:latest
 
 COPY protobufs/db.proto /usr/src/app/protobufs/db.proto
+COPY protobufs/router.proto /usr/src/app/protobufs/router.proto
 COPY db/ /usr/src/app/db/
 
 RUN cd db/ \

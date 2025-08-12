@@ -4,7 +4,7 @@
 
 #include "db.h"
 
-int main(int argc, char** argv) {
+int main(int argc, char **argv) {
     spdlog::cfg::load_env_levels();
 
     DbImpl service;

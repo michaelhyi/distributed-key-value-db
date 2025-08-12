@@ -25,6 +25,8 @@ find_package(spdlog REQUIRED)
 
 add_library(
     common 
+    "${CMAKE_CURRENT_LIST_DIR}/common/network_util.cc"
+    "${CMAKE_CURRENT_LIST_DIR}/common/network_util.h"
     "${CMAKE_CURRENT_LIST_DIR}/common/server.cc"
     "${CMAKE_CURRENT_LIST_DIR}/common/server.h"
     "${CMAKE_CURRENT_LIST_DIR}/common/string_util.cc"
@@ -39,4 +41,5 @@ target_link_libraries(
     ${_REFLECTION}
     ${_GRPC_GRPCPP}
     ${_PROTOBUF_LIBPROTOBUF}
+    spdlog::spdlog $<$<BOOL:${MINGW}>:ws2_32>
 )
