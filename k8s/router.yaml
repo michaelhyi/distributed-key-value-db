@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: router
 spec:
-  replicas: 3
   selector:
     matchLabels:
       app: router
@@ -31,9 +30,8 @@ kind: Service
 metadata:
   name: router
 spec:
-  type: LoadBalancer
   selector:
     app: router 
   ports:
-  - port: 50051
+  - port: 80
     targetPort: 50051
