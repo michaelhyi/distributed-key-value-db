@@ -36,13 +36,21 @@ docker build -f router/Dockerfile . -t michaelyi/router:latest
 
 Port forward to the router:
 ```bash
-kubectl port-forward services/router 50051:50051
+kubectl port-forward services/router 50051:80
 ```
 
+Send gRPC requests to the database at `grpc://localhost:50051` using `protobufs/db.proto`.
+
 ### TODO
-- [ ] Update README with gRPC usage
-- [ ] Sharding vs. Replication (eventual consistency)
+- [ ] Input Validation
+- [ ] Logging
+- [ ] Unit Testing
+- [ ] Sharding vs. Replication (eventual consistency & CQRS)
 - [ ] Horizontal Scaling Support for Router
+- [ ] Handle Shard Removal (Hash Ring)
+- [ ] Check Channel Connectivity Before Registering Shard
+- [ ] Register Node -> Register Shard
 - [ ] SSL Termination
+- [ ] Namespaces
 - [ ] CLI
 - [ ] SDKs
