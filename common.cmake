@@ -27,8 +27,8 @@ add_library(
     common 
     "${CMAKE_CURRENT_LIST_DIR}/common/network_util.cc"
     "${CMAKE_CURRENT_LIST_DIR}/common/network_util.h"
-    "${CMAKE_CURRENT_LIST_DIR}/common/server.cc"
     "${CMAKE_CURRENT_LIST_DIR}/common/server.h"
+    "${CMAKE_CURRENT_LIST_DIR}/common/server.tpp"
     "${CMAKE_CURRENT_LIST_DIR}/common/string_util.cc"
     "${CMAKE_CURRENT_LIST_DIR}/common/string_util.h"
 )

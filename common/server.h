@@ -1,5 +1,6 @@
 #pragma once
 
-#include <grpcpp/impl/service_type.h>
+template <typename... Services>
+void RunServer(int port, Services*... services);
 
-void RunServer(grpc::Service* service, int port = 50051);
+#include "server.tpp"
