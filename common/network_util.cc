@@ -1,10 +1,9 @@
 #include "network_util.h"
 
-#include <stdexcept>
-#include <stdlib.h>
 #include <unistd.h>
+#include <stdexcept>
 
-std::string NetworkUtil::get_server_addr() {
+std::string NetworkUtil::get_server_address() {
     std::string hostname = get_hostname();
     return hostname + ".db.default.svc.cluster.local";
 }

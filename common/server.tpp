@@ -1,15 +1,17 @@
 #include <string>
-#include <iostream>
 #include <memory>
+#include <spdlog/spdlog.h>
 #include <grpcpp/server.h>
 #include <grpcpp/server_builder.h>
-#include <spdlog/spdlog.h>
+#include <grpcpp/impl/service_type.h>
 
 using grpc::Server;
 using grpc::ServerBuilder;
 
 template <typename... Services>
-void RunServer(int port, Services*... services) {
+void RunServer(unsigned int port, Services*... services) {
+    (static_cast<grpc::Service*>(services), ...); 
+
     std::string server_address = "0.0.0.0:" + std::to_string(port);
 
     ServerBuilder builder;

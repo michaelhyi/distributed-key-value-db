@@ -17,7 +17,7 @@ const int MAX_RETRIES = 5;
 const int RETRY_DELAY_MS = 2000;
 
 void DbUtil::register_node() {
-    std::string server_address = NetworkUtil::get_server_addr();
+    std::string server_address = NetworkUtil::get_server_address();
 
     RouterClient router_client(
         grpc::CreateChannel("router:80", grpc::InsecureChannelCredentials())
