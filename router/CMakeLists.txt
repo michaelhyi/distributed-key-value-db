@@ -5,9 +5,17 @@ include(../common.cmake)
 
 add_executable(
     router
+    db_forward.cc
+    db_forward.h
+    indexed_set.h
+    indexed_set.tpp
     main.cc
     router.cc
     router.h
+    shard_discovery.cc
+    shard_discovery.h
+    shard.cc
+    shard.h
 )
 target_link_libraries(
     router

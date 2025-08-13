@@ -1,5 +1,6 @@
 FROM michaelyi/base:latest
 
+COPY protobufs/db.proto /usr/src/app/protobufs/db.proto
 COPY protobufs/router.proto /usr/src/app/protobufs/router.proto
 COPY router/ /usr/src/app/router/
 
