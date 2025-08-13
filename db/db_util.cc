@@ -1,22 +1,22 @@
 #include "db_util.h"
 
+#include <chrono>
 #include <string>
+#include <thread>
 #include <stdexcept>
 #include <grpc/grpc.h>
 #include <grpcpp/server.h>
 #include <grpcpp/security/credentials.h>
 #include <grpcpp/channel.h>
 #include <grpcpp/create_channel.h>
-#include <chrono>
-#include <thread>
 
-#include "router_client.h"
 #include "network_util.h"
+#include "router_client.h"
 
 const int MAX_RETRIES = 5;
 const int RETRY_DELAY_MS = 2000;
 
-void DbUtil::register_node() {
+void DbUtil::register_shard() {
     std::string server_address = NetworkUtil::get_server_address();
 
     RouterClient router_client(

@@ -10,7 +10,7 @@ const int GRPC_SERVER_PORT = 50051;
 int main(int argc, char **argv) {
     spdlog::cfg::load_env_levels();
 
-    DbUtil::register_node();
+    DbUtil::register_shard();
 
     DbImpl service;
     RunServer(GRPC_SERVER_PORT, &service);

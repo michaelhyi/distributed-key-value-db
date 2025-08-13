@@ -1,8 +1,8 @@
 #pragma once
 
-#include <grpcpp/channel.h>
 #include <memory>
 #include <string>
+#include <grpcpp/channel.h>
 
 #include "router.grpc.pb.h"
 

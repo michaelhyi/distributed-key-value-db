@@ -1,16 +1,16 @@
 #include "router_client.h"
 
+#include <stdlib.h>
+#include <stdexcept>
 #include <spdlog/spdlog.h>
 #include <grpcpp/client_context.h>
-#include <stdexcept>
-#include <stdlib.h>
 
 #include "router.grpc.pb.h"
 
-using google::protobuf::Empty;
-using grpc::ClientContext;
 using grpc::Status;
 using grpc::StatusCode;
+using grpc::ClientContext;
+using google::protobuf::Empty;
 using router::RegisterNodeRequest;
 
 void RouterClient::RegisterNode(const std::string &server_address) {

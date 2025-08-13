@@ -4,14 +4,15 @@
 
 #include "string_util.h"
 
-using db::DelRequest;
 using db::GetRequest;
 using db::GetResponse;
 using db::SetRequest;
-using google::protobuf::Empty;
-using grpc::ServerContext;
+using db::DelRequest;
+
 using grpc::Status;
 using grpc::StatusCode;
+using grpc::ServerContext;
+using google::protobuf::Empty;
 
 Status DbImpl::Get(ServerContext *context, const GetRequest *request, GetResponse *response) {
     if (!request || !context || !response) {
