@@ -29,5 +29,5 @@ RUN git clone --recurse-submodules -b v1.74.0 --depth 1 --shallow-submodules htt
     && make -j 4 \
     && make install
 
-COPY common.cmake /usr/src/app/common.cmake
 COPY common/ /usr/src/app/common/
+COPY common.cmake /usr/src/app/common.cmake
