@@ -23,18 +23,25 @@ endif()
 
 find_package(spdlog REQUIRED)
 
+include(FetchContent)
+FetchContent_Declare(
+    googletest
+    URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
+)
+FetchContent_MakeAvailable(googletest)
+
 add_library(
     common 
-    "${CMAKE_CURRENT_LIST_DIR}/common/network_util.cc"
-    "${CMAKE_CURRENT_LIST_DIR}/common/network_util.h"
-    "${CMAKE_CURRENT_LIST_DIR}/common/server.h"
-    "${CMAKE_CURRENT_LIST_DIR}/common/server.tpp"
-    "${CMAKE_CURRENT_LIST_DIR}/common/string_util.cc"
-    "${CMAKE_CURRENT_LIST_DIR}/common/string_util.h"
+    "${CMAKE_CURRENT_LIST_DIR}/common/src/network_util.cc"
+    "${CMAKE_CURRENT_LIST_DIR}/common/src/network_util.h"
+    "${CMAKE_CURRENT_LIST_DIR}/common/src/server.h"
+    "${CMAKE_CURRENT_LIST_DIR}/common/src/server.tpp"
+    "${CMAKE_CURRENT_LIST_DIR}/common/src/string_util.cc"
+    "${CMAKE_CURRENT_LIST_DIR}/common/src/string_util.h"
 )
 target_include_directories(
     common
-    PUBLIC "${CMAKE_CURRENT_LIST_DIR}/common"
+    PUBLIC "${CMAKE_CURRENT_LIST_DIR}/common/src"
 )
 target_link_libraries(
     common
@@ -96,3 +103,18 @@ target_link_libraries(
     ${_REFLECTION}
     ${_PROTOBUF_LIBPROTOBUF}
 )
+
+enable_testing()
+
+add_executable(
+    common_test
+    "${CMAKE_CURRENT_LIST_DIR}/common/test/string_util_test.cc"
+)
+target_link_libraries(
+    common_test
+    common
+    GTest::gtest_main
+)
+
+include(GoogleTest)
+gtest_discover_tests(common_test)
