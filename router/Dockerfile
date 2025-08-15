@@ -10,7 +10,7 @@ RUN cd router \
     && cd build \
     && cmake .. \
     && make \
-    && ctest \
+    && ctest
 
 RUN mv router/build/router /usr/local/bin/router \
     && rm -rf ./*
