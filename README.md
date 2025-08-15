@@ -10,6 +10,7 @@ interfaced via a CLI or SDKs.
 - gRPC
 - Kubernetes
 - Kafka
+- googletest
 - Docker
 - CMake
 - Protobuf
