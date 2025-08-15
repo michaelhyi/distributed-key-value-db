@@ -9,7 +9,8 @@ RUN cd db/ \
     && mkdir -p build \
     && cd build \
     && cmake .. \
-    && make
+    && make \
+    && ctest \
 
 RUN mv db/build/db /usr/local/bin/db \
     && rm -rf ./*
