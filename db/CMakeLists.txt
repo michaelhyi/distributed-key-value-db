@@ -5,13 +5,13 @@ include(../common.cmake)
 
 add_executable(
     db
-    db_util.cc
-    db_util.h
-    db.cc
-    db.h
-    main.cc
-    router_client.cc
-    router_client.h
+    src/db_util.cc
+    src/db_util.h
+    src/db.cc
+    src/db.h
+    src/main.cc
+    src/router_client.cc
+    src/router_client.h
 )
 target_link_libraries(
     db
