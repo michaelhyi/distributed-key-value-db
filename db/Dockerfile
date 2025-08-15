@@ -10,7 +10,7 @@ RUN cd db/ \
     && cd build \
     && cmake .. \
     && make \
-    && ctest \
+    && ctest
 
 RUN mv db/build/db /usr/local/bin/db \
     && rm -rf ./*
