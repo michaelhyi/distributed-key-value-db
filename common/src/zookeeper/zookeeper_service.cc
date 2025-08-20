@@ -26,10 +26,10 @@ void ZookeeperService::watcher(zhandle_t *zkH, int type, int state, const char *
     }
 }
 
-ZookeeperService::ZookeeperService() {
+ZookeeperService::ZookeeperService(const std::string& host) {
     connected = false;
     expired = false;
-    zk_handler = zookeeper_init("zookeeper:2181", watcher, 100000, nullptr, this, 0);
+    zk_handler = zookeeper_init(host.c_str(), watcher, 100000, nullptr, this, 0);
 
     if (!zk_handler) {
         throw std::runtime_error("Failed to init zookeeper");

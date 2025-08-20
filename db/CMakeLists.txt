@@ -19,8 +19,6 @@ add_executable(
     src/main.cc
     src/router_client.cc
     src/router_client.h
-    src/zookeeper_service.cc
-    src/zookeeper_service.h
 )
 target_include_directories(
     db

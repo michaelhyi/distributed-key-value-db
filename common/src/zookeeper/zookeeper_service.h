@@ -13,7 +13,7 @@ private:
     static void watcher(zhandle_t *zkH, int type, int state, const char *path, void *watcherCtx);
 
 public:
-    ZookeeperService();
+    ZookeeperService(const std::string& host);
     ~ZookeeperService();
     ZookeeperService(const ZookeeperService& other) = delete;
     ZookeeperService& operator=(const ZookeeperService& other) = delete;
