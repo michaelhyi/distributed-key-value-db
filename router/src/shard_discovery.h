@@ -4,13 +4,13 @@
 #include <string>
 
 #include "shard.h"
-#include "indexed_set.h"
+#include "zookeeper_service.h"
 
 class ShardDiscoveryService {
 private:
-    IndexedSet<std::shared_ptr<const Shard>> shards;
+    ZookeeperService& zookeeper_service;
 
 public:
-    void add(std::shared_ptr<const Shard> shard);
+    ShardDiscoveryService(ZookeeperService& zookeeper_service) : zookeeper_service(zookeeper_service) {}
     std::shared_ptr<const Shard> get_shard(const std::string& key) const;
 };

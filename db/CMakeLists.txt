@@ -10,14 +10,11 @@ add_executable(
     src/db.cc
     src/db.h
     src/main.cc
-    src/router_client.cc
-    src/router_client.h
 )
 target_link_libraries(
     db
     common
     db_grpc_proto
-    router_grpc_proto
     ${_REFLECTION}
     ${_GRPC_GRPCPP}
     ${_PROTOBUF_LIBPROTOBUF}

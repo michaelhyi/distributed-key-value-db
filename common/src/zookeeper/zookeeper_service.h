@@ -2,6 +2,7 @@
 #define THREADED 1
 
 #include <string>
+#include <unordered_map>
 #include <zookeeper/zookeeper.h>
 
 class ZookeeperService {
@@ -21,4 +22,6 @@ public:
     ZookeeperService& operator=(ZookeeperService&& other);
 
     void create_znode(const std::string& path, const std::string& data, int flags = ZOO_EPHEMERAL);
+    std::string get_znode(const std::string& path);
+    std::unordered_map<std::string, std::string> get_children(const std::string& path);
 };

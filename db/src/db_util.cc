@@ -4,14 +4,10 @@
 #include <string>
 #include <thread>
 #include <stdexcept>
-#include <grpc/grpc.h>
-#include <grpcpp/server.h>
-#include <grpcpp/security/credentials.h>
-#include <grpcpp/channel.h>
-#include <grpcpp/create_channel.h>
+#include <spdlog/spdlog.h>
 
 #include "network_util.h"
-#include "router_client.h"
+#include "zookeeper_service.h"
 
 const int MAX_RETRIES = 5;
 const int RETRY_DELAY_MS = 2000;
@@ -19,17 +15,20 @@ const int RETRY_DELAY_MS = 2000;
 void DbUtil::register_shard() {
     std::string server_address = NetworkUtil::get_server_address();
 
-    RouterClient router_client(
-        grpc::CreateChannel("router:80", grpc::InsecureChannelCredentials())
-    );
+    ZookeeperService zookeeper_service("zookeeper:2181");
+    try {
+        zookeeper_service.create_znode("/shards", server_address, ZOO_PERSISTENT);
+    } catch (const std::exception& e) {
+    }
 
     bool registered = false;
     for (int i = 0; i < MAX_RETRIES; i++) {
         try {
-            router_client.RegisterNode(server_address);
+            zookeeper_service.create_znode("/shards/" + NetworkUtil::get_hostname(), server_address, ZOO_PERSISTENT);
             registered = true;
             break;
         } catch (const std::exception& e) {
+            spdlog::warn("{}", e.what());
             std::this_thread::sleep_for(std::chrono::milliseconds(RETRY_DELAY_MS));
         }
     }
