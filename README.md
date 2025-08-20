@@ -26,38 +26,24 @@ Prerequisites:
 - Minikube
 - Kubectl
 
-Start minikube and point your terminal's Docker CLI to minikube's engine:
+Start minikube and the database:
 ```bash
 minikube start
-eval $(minikube docker-env)
-```
-
-Build the base image and the images of each service:
-```bash
-docker build -f Dockerfile.base . -t michaelyi/base:latest
-docker build -f db/Dockerfile . -t michaelyi/db:latest
-docker build -f router/Dockerfile . -t michaelyi/router:latest
-```
-
-Port forward to the router:
-```bash
-kubectl port-forward services/router 50051:80
+chmod +x ./run.sh
+./run.sh
 ```
 
 Send gRPC requests to the database at `grpc://localhost:50051` using `protobufs/db.proto`.
 
 ### TODO
-- [ ] Decouple Node Registration with Routers via Zookeeper
 - [ ] Subrouters: Leader Election, Sharding vs. Replication 
 - [ ] Eventual Consistency
-- [ ] Horizontal Scaling Support for Router
 - [ ] Input Validation
 - [ ] Logging
 - [ ] Unit Testing
 - [ ] Hash Ring Algorithm
 - [ ] Check Channel Connectivity Before Registering Shard
 - [ ] Durability -> Disk Backups
-- [ ] Register Node -> Register Shard
 - [ ] SSL Termination
 - [ ] Namespaces
 - [ ] CLI
