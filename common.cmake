@@ -21,6 +21,13 @@ else()
     set(_GRPC_CPP_PLUGIN_EXECUTABLE $<TARGET_FILE:gRPC::grpc_cpp_plugin>)
 endif()
 
+find_path(ZOOKEEPER_INCLUDE_DIR zookeeper/zookeeper.h)
+find_library(ZOOKEEPER_LIBRARY zookeeper_mt)
+
+if (NOT ZOOKEEPER_INCLUDE_DIR OR NOT ZOOKEEPER_LIBRARY)
+    message(FATAL_ERROR "Could not find ZooKeeper")
+endif()
+
 find_package(spdlog REQUIRED)
 
 include(FetchContent)
@@ -45,12 +52,14 @@ target_include_directories(
     common
     PUBLIC "${CMAKE_CURRENT_LIST_DIR}/common/src"
     PUBLIC "${CMAKE_CURRENT_LIST_DIR}/common/src/zookeeper"
+    PRIVATE ${ZOOKEEPER_INCLUDE_DIR}
 )
 target_link_libraries(
     common
     ${_REFLECTION}
     ${_GRPC_GRPCPP}
     ${_PROTOBUF_LIBPROTOBUF}
+    ${ZOOKEEPER_LIBRARY}
     spdlog::spdlog $<$<BOOL:${MINGW}>:ws2_32>
 )
 
