@@ -1,6 +1,11 @@
 #pragma once
 
+#include "zookeeper_service.h"
+
 class DbUtil {
+private:
+    ZookeeperService& zookeeper_service;
 public:
-    static void register_shard();
+    DbUtil(ZookeeperService& zookeeper_service) : zookeeper_service(zookeeper_service) {} 
+    void register_shard();
 };

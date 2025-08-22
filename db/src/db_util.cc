@@ -15,7 +15,6 @@ const int RETRY_DELAY_MS = 2000;
 void DbUtil::register_shard() {
     std::string server_address = NetworkUtil::get_server_address();
 
-    ZookeeperService zookeeper_service("zookeeper:2181");
     try {
         zookeeper_service.create_znode("/shards", server_address, ZOO_PERSISTENT);
     } catch (const std::exception& e) {
@@ -24,7 +23,7 @@ void DbUtil::register_shard() {
     bool registered = false;
     for (int i = 0; i < MAX_RETRIES; i++) {
         try {
-            zookeeper_service.create_znode("/shards/" + NetworkUtil::get_hostname(), server_address, ZOO_PERSISTENT);
+            zookeeper_service.create_znode("/shards/" + NetworkUtil::get_hostname(), server_address, ZOO_EPHEMERAL);
             registered = true;
             break;
         } catch (const std::exception& e) {
