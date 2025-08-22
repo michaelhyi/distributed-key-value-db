@@ -8,6 +8,9 @@ the database can be interfaced via a CLI or SDKs.
 ### Architecture
 ![Architecture](.github/Architecture.png)
 
+`shard-router`, `replica-router`, `replica`, and `replica-write-service`
+services are horizontally scaled and load balanced.
+
 ### Tech Stack
 - C++
 - gRPC
@@ -36,12 +39,18 @@ chmod +x ./run.sh
 Send gRPC requests to the database at `grpc://localhost:50051` using `protobufs/db.proto`.
 
 ### TODO
-- [ ] Subrouters: Leader Election, Sharding vs. Replication 
+- [ ] Rename gRPC Service Classes
+- [ ] Separate shard-router and replica-router
+- [ ] Leader Election
+- [ ] Sharding vs. Replication 
+- [ ] Replica Write Service
 - [ ] Eventual Consistency
 - [ ] Input Validation
-- [ ] Logging
+- [ ] Logging (spdlog classnames)
+- [ ] Exceptions
 - [ ] Unit Testing
-- [ ] Hash Ring Algorithm
+- [ ] gdb
+- [ ] Shard Ungraceful Removal Handling
 - [ ] Check Channel Connectivity Before Registering Shard
 - [ ] Durability -> Disk Backups
 - [ ] SSL Termination
