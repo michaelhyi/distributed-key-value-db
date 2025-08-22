@@ -7,7 +7,7 @@
 #include <grpcpp/security/credentials.h>
 #include <spdlog/spdlog.h>
 
-#include "zookeeper_service.h"
+#include "zookeeper.h"
 
 std::shared_ptr<const Shard> ShardDiscoveryService::get_shard(const std::string& key) const {
     std::unordered_map<std::string, std::string> shard_znodes;

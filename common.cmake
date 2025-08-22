@@ -39,19 +39,18 @@ FetchContent_MakeAvailable(googletest)
 
 add_library(
     common 
-    "${CMAKE_CURRENT_LIST_DIR}/common/src/zookeeper/zookeeper_service.cc"
-    "${CMAKE_CURRENT_LIST_DIR}/common/src/zookeeper/zookeeper_service.h"
     "${CMAKE_CURRENT_LIST_DIR}/common/src/network_util.cc"
     "${CMAKE_CURRENT_LIST_DIR}/common/src/network_util.h"
     "${CMAKE_CURRENT_LIST_DIR}/common/src/server.h"
     "${CMAKE_CURRENT_LIST_DIR}/common/src/server.tpp"
     "${CMAKE_CURRENT_LIST_DIR}/common/src/string_util.cc"
     "${CMAKE_CURRENT_LIST_DIR}/common/src/string_util.h"
+    "${CMAKE_CURRENT_LIST_DIR}/common/src/zookeeper.cc"
+    "${CMAKE_CURRENT_LIST_DIR}/common/src/zookeeper.h"
 )
 target_include_directories(
     common
     PUBLIC "${CMAKE_CURRENT_LIST_DIR}/common/src"
-    PUBLIC "${CMAKE_CURRENT_LIST_DIR}/common/src/zookeeper"
     PRIVATE ${ZOOKEEPER_INCLUDE_DIR}
 )
 target_link_libraries(

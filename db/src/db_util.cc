@@ -7,7 +7,7 @@
 #include <spdlog/spdlog.h>
 
 #include "network_util.h"
-#include "zookeeper_service.h"
+#include "zookeeper.h"
 
 const int MAX_RETRIES = 5;
 const int RETRY_DELAY_MS = 2000;

@@ -4,7 +4,7 @@
 
 #include "db_forward.h"
 #include "shard_discovery.h"
-#include "zookeeper_service.h"
+#include "zookeeper.h"
 
 const int GRPC_SERVER_PORT = 50051;
 

@@ -4,7 +4,7 @@
 #include <string>
 
 #include "shard.h"
-#include "zookeeper_service.h"
+#include "zookeeper.h"
 
 class ShardDiscoveryService {
 private:

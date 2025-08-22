@@ -1,4 +1,4 @@
-#include "zookeeper_service.h"
+#include "zookeeper.h"
 
 #include <unistd.h>
 #include <stdexcept>
